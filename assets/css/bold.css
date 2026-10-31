@@ -475,12 +475,12 @@ article[data-page="portfolio"]::after { content: "WORK"; }
     align-self: stretch;
     height: auto;
     padding-top: 30px;
-    /* DIAGNOSTIC: explicit top alignment + red outline (remove after).
-       Tests whether the stretch/clamp alignment is the culprit. */
-    position: static;
+    /* Stretched sidebar clamped by max-height misaligns its top edge;
+       pin it to the top explicitly. Sticky keeps working on scroll. */
+    position: sticky;
+    top: 60px;
     align-self: flex-start;
-    margin-top: 0;
-    outline: 3px solid #ff0000;
+    outline: 3px solid #ff0000; /* DIAGNOSTIC ONLY - remove after verify */
   }
 
   article[data-page] { padding-top: 30px; outline: 3px solid #0000ff; /* DIAGNOSTIC ONLY */ }

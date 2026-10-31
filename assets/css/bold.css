@@ -480,10 +480,9 @@ article[data-page="portfolio"]::after { content: "WORK"; }
     position: sticky;
     top: 60px;
     align-self: flex-start;
-    outline: 3px solid #ff0000; /* DIAGNOSTIC ONLY - remove after verify */
   }
 
-  article[data-page] { padding-top: 30px; outline: 3px solid #0000ff; /* DIAGNOSTIC ONLY */ }
+  article[data-page] { padding-top: 30px; }
 }
 
 /* ---------- navbar: floating glass capsule, scrollable ---------- */

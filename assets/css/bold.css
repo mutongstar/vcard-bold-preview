@@ -475,12 +475,15 @@ article[data-page="portfolio"]::after { content: "WORK"; }
     align-self: stretch;
     height: auto;
     padding-top: 30px;
-    /* DIAGNOSTIC: sticky disabled to isolate the 60px drop.
-       If the tops align with sticky off, sticky is the culprit. */
+    /* DIAGNOSTIC: explicit top alignment + red outline (remove after).
+       Tests whether the stretch/clamp alignment is the culprit. */
     position: static;
+    align-self: flex-start;
+    margin-top: 0;
+    outline: 3px solid #ff0000;
   }
 
-  article[data-page] { padding-top: 30px; }
+  article[data-page] { padding-top: 30px; outline: 3px solid #0000ff; /* DIAGNOSTIC ONLY */ }
 }
 
 /* ---------- navbar: floating glass capsule, scrollable ---------- */

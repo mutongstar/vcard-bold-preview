@@ -485,8 +485,7 @@ article[data-page="portfolio"]::after { content: "WORK"; }
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 8px;
-  overflow: hidden;
+  padding: 8px 10px;
   border-radius: 9999px;
   background: linear-gradient(var(--glass-angle), rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.04) 42%, rgba(255, 255, 255, 0.02));
   -webkit-backdrop-filter: blur(20px) saturate(160%);
@@ -501,7 +500,11 @@ article[data-page="portfolio"]::after { content: "WORK"; }
   gap: 4px;
   overflow-x: auto;
   scrollbar-width: none;
-  padding: 0;
+  padding: 0 2px;
+  /* vertical breathing room so hover lift and the active glow are not
+     clipped by this scroll container; negative margins keep the capsule slim */
+  padding-block: 10px;
+  margin-block: -10px;
 }
 
 .navbar-list::-webkit-scrollbar { display: none; }
@@ -525,7 +528,7 @@ article[data-page="portfolio"]::after { content: "WORK"; }
 .navbar-link.active {
   background: #f5c451;
   color: #111111;
-  box-shadow: 0 6px 18px rgba(245, 196, 81, 0.35);
+  box-shadow: 0 4px 10px rgba(245, 196, 81, 0.35), inset 0 0 0 1px rgba(245, 196, 81, 0.4);
 }
 
 .navbar .lang-btn {

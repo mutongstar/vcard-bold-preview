@@ -160,8 +160,11 @@ article[data-page="portfolio"]::after { content: "WORK"; }
 /* icon backplate: same gradient-frame construction as the contact icon boxes */
 .service-icon-box {
   position: relative;
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  align-self: flex-start;
+  aspect-ratio: 1 / 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -185,8 +188,8 @@ article[data-page="portfolio"]::after { content: "WORK"; }
 .service-icon-box img {
   position: relative;
   z-index: 1;
-  max-width: 30px;
-  max-height: 30px;
+  max-width: 34px;
+  max-height: 34px;
 }
 
 /* ---------- timeline ---------- */
@@ -228,10 +231,12 @@ article[data-page="portfolio"]::after { content: "WORK"; }
   font-weight: 600;
 }
 
-/* ---------- project cards: wake on hover ---------- */
+/* ---------- project cards: title overlaid on the cover ---------- */
 .project-item > a {
+  position: relative;
+  display: block;
   border: 1px solid #26262e;
-  border-radius: 14px;
+  border-radius: 16px;
   overflow: hidden;
   transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
 }
@@ -241,6 +246,11 @@ article[data-page="portfolio"]::after { content: "WORK"; }
   transform: translateY(-4px);
   border-color: rgba(245, 196, 81, 0.6);
   box-shadow: 0 18px 36px rgba(0, 0, 0, 0.5);
+}
+
+.project-img {
+  margin-bottom: 0;
+  border-radius: 0;
 }
 
 .project-img img {
@@ -254,6 +264,40 @@ article[data-page="portfolio"]::after { content: "WORK"; }
   transform: scale(1.04);
 }
 
+/* soft gaussian scrim behind the overlaid text */
+.project-item > a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 62%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0));
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  -webkit-mask-image: linear-gradient(to top, #000 55%, transparent 100%);
+  mask-image: linear-gradient(to top, #000 55%, transparent 100%);
+  pointer-events: none;
+}
+
+.project-title,
+.project-category {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  z-index: 2;
+  margin-left: 0;
+  color: #ffffff;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
+}
+
+.project-title { bottom: 36px; }
+
+.project-category {
+  bottom: 14px;
+  color: rgba(255, 255, 255, 0.78);
+}
+
 .project-title::after {
   content: " →";
   color: #f5c451;
@@ -264,6 +308,150 @@ article[data-page="portfolio"]::after { content: "WORK"; }
 .project-item > a:hover .project-title::after,
 .project-item > a:focus-visible .project-title::after {
   opacity: 1;
+}
+
+/* ---------- case-study modal (mock data) ---------- */
+.case-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 4vh 16px;
+  overflow-y: auto;
+}
+
+.case-modal[hidden] { display: none; }
+
+.case-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.62);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.case-panel {
+  position: relative;
+  width: 100%;
+  max-width: 860px;
+  background: #16161c;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.6);
+}
+
+.case-hero {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+}
+
+.case-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.45);
+  color: #ffffff;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.case-body { padding: 28px 32px 36px; }
+
+.case-kicker {
+  margin: 0 0 8px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #f5c451;
+}
+
+.case-title {
+  font-family: "Archivo Black", "Poppins", sans-serif;
+  font-size: clamp(24px, 3.4vw, 32px);
+  line-height: 1.12;
+  text-transform: uppercase;
+  color: #f5f2ea;
+  margin: 0 0 20px;
+}
+
+.case-meta {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 0 0 8px;
+  padding: 16px 0;
+  border-top: 1px solid #26262e;
+  border-bottom: 1px solid #26262e;
+}
+
+.case-meta div { min-width: 0; }
+
+.case-meta dt {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #9a978e;
+  margin-bottom: 4px;
+}
+
+.case-meta dd {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #f5f2ea;
+}
+
+.case-body h4 {
+  margin: 26px 0 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #f5c451;
+}
+
+.case-body p, .case-body li {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #d8d5cc;
+}
+
+.case-body ul { padding-left: 20px; }
+
+.case-todo {
+  margin-top: 28px;
+  padding: 16px 18px;
+  border-left: 3px solid #f5c451;
+  border-radius: 0 12px 12px 0;
+  background: rgba(245, 196, 81, 0.07);
+}
+
+.case-todo h4 { margin-top: 0; }
+
+.case-mock-note {
+  margin-top: 20px;
+  font-size: 12px;
+  color: #9a978e;
+}
+
+@media (max-width: 580px) {
+  .case-meta { grid-template-columns: 1fr 1fr; }
+  .case-hero { height: 200px; }
+  .case-body { padding: 22px 20px 28px; }
 }
 
 /* ---------- sidebar details ---------- */
@@ -286,13 +474,20 @@ article[data-page="portfolio"]::after { content: "WORK"; }
   .sidebar {
     align-self: stretch;
     height: auto;
+    padding-top: 30px;
   }
+
+  article[data-page] { padding-top: 30px; }
 }
 
-/* ---------- navbar: liquid glass, language switch inside ---------- */
+/* ---------- navbar: floating glass capsule, scrollable ---------- */
 .navbar {
   display: flex;
   align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  overflow: hidden;
+  border-radius: 9999px;
   background: linear-gradient(var(--glass-angle), rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.04) 42%, rgba(255, 255, 255, 0.02));
   -webkit-backdrop-filter: blur(20px) saturate(160%);
   backdrop-filter: blur(20px) saturate(160%);
@@ -300,14 +495,55 @@ article[data-page="portfolio"]::after { content: "WORK"; }
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), inset 0 -1px 0 rgba(255, 255, 255, 0.06), 0 18px 36px rgba(0, 0, 0, 0.45);
 }
 
-.navbar-list { flex: 1; }
+.navbar-list {
+  flex: 1;
+  flex-wrap: nowrap;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 0;
+}
+
+.navbar-list::-webkit-scrollbar { display: none; }
+
+.navbar-item { flex-shrink: 0; }
+
+.navbar-link {
+  display: inline-block;
+  padding: 9px 18px;
+  border-radius: 9999px;
+  white-space: nowrap;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar-link:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.navbar-link.active {
+  background: #f5c451;
+  color: #111111;
+  box-shadow: 0 6px 18px rgba(245, 196, 81, 0.35);
+}
 
 .navbar .lang-btn {
   margin-left: auto;
-  margin-right: 10px;
-  padding: 6px 14px;
+  margin-right: 4px;
+  padding: 9px 14px;
   font-size: 12px;
+  border-radius: 9999px;
   flex-shrink: 0;
+}
+
+@media (max-width: 580px) {
+  .navbar {
+    left: 12px;
+    right: 12px;
+    width: auto;
+    bottom: 12px;
+  }
 }
 
 /* ---------- scrollbar + small screens ---------- */

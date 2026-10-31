@@ -1,0 +1,264 @@
+/* ============================================================
+   MU — Be Bold (style-definition overlay, see DESIGN.md)
+   Loaded AFTER style.css. All rules here are overrides;
+   style.css itself is untouched. Literal colors on purpose:
+   this direction must not inherit a saved light theme.
+   ============================================================ */
+
+/* ---------- atmosphere: ink canvas with glow + grid + grain ---------- */
+body {
+  background: #0a0a0d;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(720px 480px at 12% -8%, rgba(245, 196, 81, 0.08), transparent 60%),
+    radial-gradient(560px 420px at 96% 108%, rgba(255, 77, 0, 0.05), transparent 60%),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.028) 0 1px, transparent 1px 56px),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.028) 0 1px, transparent 1px 56px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+.sidebar,
+main {
+  position: relative;
+  z-index: 1;
+}
+
+::selection {
+  background: #f5c451;
+  color: #111111;
+}
+
+:focus-visible {
+  outline: 2px solid #f5c451;
+  outline-offset: 2px;
+}
+
+/* ---------- display type ---------- */
+.sidebar .name,
+.article-title,
+.project-title {
+  font-family: "Archivo Black", "Poppins", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1.08;
+}
+
+.sidebar .name {
+  font-size: clamp(28px, 4vw, 40px);
+  color: #f5f2ea;
+}
+
+.article-title {
+  font-size: clamp(26px, 3.4vw, 34px);
+  color: #f5f2ea;
+  padding-bottom: 18px;
+}
+
+.article-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 56px;
+  height: 4px;
+  background: #f5c451;
+}
+
+/* section numbers: CSS counters, language-neutral */
+main {
+  counter-reset: bold-section;
+}
+
+article[data-page] {
+  counter-increment: bold-section;
+}
+
+.article-title::before {
+  content: "0" counter(bold-section);
+  display: inline-block;
+  margin-right: 14px;
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: #f5c451;
+  vertical-align: 10px;
+}
+
+/* ---------- panels ---------- */
+.sidebar {
+  background: #16161c;
+  border: 1px solid #26262e;
+  border-top: 3px solid transparent;
+  border-image: linear-gradient(90deg, #f5c451, transparent 70%) 1;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+}
+
+article[data-page] {
+  background: linear-gradient(180deg, #16161c, #101014);
+  border: 1px solid #26262e;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+}
+
+.avatar-box {
+  border: 2px solid rgba(245, 196, 81, 0.65);
+  box-shadow: 0 0 0 6px rgba(245, 196, 81, 0.08), 0 12px 28px rgba(0, 0, 0, 0.5);
+}
+
+.sidebar .title {
+  color: #f5c451;
+  border: 1px solid rgba(245, 196, 81, 0.4);
+}
+
+/* ---------- ghost words (decoration only) ---------- */
+article[data-page] > * {
+  position: relative;
+  z-index: 1;
+}
+
+article[data-page]::after {
+  position: absolute;
+  top: 6px;
+  right: 14px;
+  z-index: 0;
+  font-family: "Archivo Black", "Poppins", sans-serif;
+  font-size: clamp(64px, 12vw, 140px);
+  line-height: 1;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(245, 196, 81, 0.14);
+  pointer-events: none;
+  user-select: none;
+}
+
+article[data-page="about"]::after { content: "ABOUT"; }
+article[data-page="resume"]::after { content: "RÉSUMÉ"; }
+article[data-page="portfolio"]::after { content: "WORK"; }
+
+/* ---------- service chips ---------- */
+.service-item {
+  background: #1b1b23;
+  border: 1px solid #26262e;
+  border-left: 3px solid #f5c451;
+  border-radius: 14px;
+}
+
+.service-icon-box {
+  border: 1px solid rgba(245, 196, 81, 0.45);
+  color: #f5c451;
+}
+
+/* ---------- timeline ---------- */
+.timeline-item::before {
+  width: 9px;
+  height: 9px;
+  background: #f5c451;
+  box-shadow: 0 0 0 4px #16161c, 0 0 0 5px rgba(245, 196, 81, 0.4);
+}
+
+.timeline-item > span {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #f5c451;
+}
+
+/* ---------- filter pills ---------- */
+.filter-item button {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #9a978e;
+}
+
+.filter-item button:hover { color: #f5f2ea; }
+
+.filter-item button.active {
+  color: #111111;
+  background: #f5c451;
+  border-radius: 9999px;
+  padding: 6px 14px;
+}
+
+.filter-select-box button {
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ---------- project cards: wake on hover ---------- */
+.project-item > a {
+  border: 1px solid #26262e;
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.project-item > a:hover,
+.project-item > a:focus-visible {
+  transform: translateY(-4px);
+  border-color: rgba(245, 196, 81, 0.6);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.5);
+}
+
+.project-img img {
+  filter: grayscale(0.55) contrast(1.05);
+  transition: filter 0.45s ease, transform 0.45s ease;
+}
+
+.project-item > a:hover .project-img img,
+.project-item > a:focus-visible .project-img img {
+  filter: grayscale(0);
+  transform: scale(1.04);
+}
+
+.project-title::after {
+  content: " →";
+  color: #f5c451;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-item > a:hover .project-title::after,
+.project-item > a:focus-visible .project-title::after {
+  opacity: 1;
+}
+
+/* ---------- sidebar details ---------- */
+.contact-link:hover { color: #f5c451; }
+
+.lang-btn {
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid rgba(245, 196, 81, 0.5);
+  color: #f5c451;
+}
+
+.separator {
+  background: #33333d;
+}
+
+/* ---------- scrollbar + small screens ---------- */
+::-webkit-scrollbar-thumb {
+  background: #3a3a44;
+  border: 2px solid #0a0a0d;
+}
+
+::-webkit-scrollbar-thumb:hover { background: #f5c451; }
+
+@media (hover: none) {
+  .project-img img { filter: grayscale(0); }
+}
+
+@media (max-width: 580px) {
+  article[data-page]::after { display: none; }
+}

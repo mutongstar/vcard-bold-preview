@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Michael Mu — Head of Design</title>
+
+  <!--
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./assets/images/logo.ico" type="image/x-icon">
+
+  <!--
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/bold.css">
+
+  <!--
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!--
+    - access gate: light front-end password (casual sharing only, not real security).
+    - to change the password, replace GATE_HASH in assets/js/script.js with the SHA-256 of the new password.
+  -->
+  <div class="gate-overlay" id="gateOverlay">
+    <div class="gate-card">
+      <ion-icon name="lock-closed-outline" class="gate-icon"></ion-icon>
+      <p class="gate-text">请输入访问密码<br>Enter the access password</p>
+      <form class="gate-form" id="gateForm">
+        <input type="password" id="gateInput" class="gate-input" placeholder="Password / 密码" autocomplete="off" aria-label="Access password">
+        <button type="submit" class="gate-btn">进入 / Enter</button>
+      </form>
+      <p class="gate-error" id="gateError" hidden>密码不对，请重试。 / Wrong password, please try again.</p>
+    </div>
+  </div>
+
+  <!--
+    - #MAIN
+  -->
+
+  <main>
+
+    <!--
+      - #SIDEBAR
+    -->
+
+    <aside class="sidebar" data-sidebar>
+
+      <div class="sidebar-info">
+
+        <figure class="avatar-box">
+          <img src="./assets/images/my-avatar.png" alt="Michael Mu" width="80">
+        </figure>
+
+        <div class="info-content">
+          <h1 class="name" title="Michael Mu" data-i18n="name">Michael Mu</h1>
+
+          <p class="title" data-i18n="role">Head of Design</p>
+        </div>
+
+        <button class="info_more-btn" data-sidebar-btn>
+          <span data-i18n="showContacts">Show Contacts</span>
+
+          <ion-icon name="chevron-down"></ion-icon>
+        </button>
+
+      </div>
+
+      <div class="sidebar-info_more">
+
+        <div class="separator"></div>
+
+        <ul class="contacts-list">
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="mail-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title" data-i18n="labelEmail">Email</p>
+
+              <a href="mailto:mutong@vip.qq.com" class="contact-link">mutong@vip.qq.com</a>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="logo-github"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title" data-i18n="labelGithub">GitHub</p>
+
+              <a href="https://github.com/mutongstar" class="contact-link">mutongstar</a>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="location-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title" data-i18n="labelLocation">Location</p>
+
+              <address data-i18n="location">Shenzhen, China</address>
+            </div>
+
+          </li>
+
+        </ul>
+
+        <div class="separator"></div>
+
+        <ul class="social-list">
+
+          <li class="social-item">
+            <a href="https://www.linkedin.com/" class="social-link" aria-label="LinkedIn">
+              <ion-icon name="logo-linkedin"></ion-icon>
+            </a>
+          </li>
+
+          <li class="social-item">
+            <a href="https://github.com/mutongstar" class="social-link" aria-label="GitHub">
+              <ion-icon name="logo-github"></ion-icon>
+            </a>
+          </li>
+
+        </ul>
+
+        <div class="sidebar-actions">
+          <button class="lang-btn" data-lang-btn>中文</button>
+        </div>
+
+      </div>
+
+    </aside>
+
+
+
+
+
+    <!--
+      - #main-content
+    -->
+
+    <div class="main-content">
+
+      <!--
+        - #NAVBAR
+      -->
+
+      <nav class="navbar">
+
+        <ul class="navbar-list">
+
+          <li class="navbar-item">
+            <button class="navbar-link  active" data-nav-link data-nav="about" data-i18n="navAbout">About</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link data-nav="resume" data-i18n="navResume">Resume</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link data-nav="portfolio" data-i18n="navPortfolio">Portfolio</button>
+          </li>
+
+        </ul>
+
+      </nav>
+
+
+
+
+
+      <!--
+        - #ABOUT
+      -->
+
+      <article class="about  active" data-page="about">
+
+        <header>
+          <h2 class="h2 article-title" data-i18n="aboutTitle">About me</h2>
+        </header>
+
+        <section class="about-text">
+          <p data-i18n="aboutP1">
+            19 years of user experience and product design, spanning Tencent, WeSing, and OPPO ColorOS.
+            I combine 0-to-1 product building, system experience strategy, design systems, and team
+            building — currently leading ColorOS interconnect experience at OPPO.
+          </p>
+
+          <p data-i18n="aboutP2">
+            I served as the UX design representative for ColorOS 14–16, managed 40+ designers, rebuilt
+            the user research team, and established NPS-based experience measurement. Since 2025 I have
+            been exploring new interaction experiences with AI and runnable prototypes.
+          </p>
+</section>
+
+
+        <!--
+          - service
+        -->
+
+        <section class="service">
+
+          <h3 class="h3 service-title" data-i18n="servicesTitle">What i'm doing</h3>
+
+          <ul class="service-list">
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-design.svg" alt="design icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title" data-i18n="svc1Title">System experience strategy</h4>
+
+                <p class="service-item-text" data-i18n="svc1Text">
+                  OS-level experience strategy and cross-business coordination, from insight to shipped
+                  system behavior.
+                </p>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-dev.svg" alt="design system icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title" data-i18n="svc2Title">Design language &amp; systems</h4>
+
+                <p class="service-item-text" data-i18n="svc2Text">
+                  Shared design systems, controls, and motion — including the ColorOS 15 &amp; 16 UI Kits
+                  published on Figma Community.
+                </p>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-app.svg" alt="research icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title" data-i18n="svc3Title">Research &amp; validation</h4>
+
+                <p class="service-item-text" data-i18n="svc3Text">
+                  User insight, design-stage user testing, and NPS-based experience measurement.
+                </p>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-photo.svg" alt="team icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title" data-i18n="svc4Title">Team building</h4>
+
+                <p class="service-item-text" data-i18n="svc4Text">
+                  Hiring, coaching, and growing designers — three team members I coached have been
+                  promoted to department heads.
+                </p>
+              </div>
+
+            </li>
+</ul>
+
+        </section>
+      </article>
+
+
+
+
+
+      <!--
+        - #RESUME
+      -->
+
+      <article class="resume" data-page="resume">
+
+        <header>
+          <h2 class="h2 article-title" data-i18n="resumeTitle">Resume</h2>
+        </header>
+
+        <section class="timeline">
+
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="book-outline"></ion-icon>
+            </div>
+
+            <h3 class="h3" data-i18n="expTitle">Experience</h3>
+          </div>
+
+          <ol class="timeline-list">
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title" data-i18n="job1Title">ColorOS Interconnect Experience Lead — OPPO</h4>
+
+              <span data-i18n="job1Date">2026.04 — Present</span>
+
+              <p class="timeline-text" data-i18n="job1Text">
+                Leading user experience for OPPO's ColorOS interconnect direction; contributing to
+                next-year strategy planning and cross-device collaboration experiences.
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title" data-i18n="job2Title">Design Expert &amp; Platform Design Team Lead — OPPO</h4>
+
+              <span>2023.01 — 2026.03</span>
+
+              <p class="timeline-text" data-i18n="job2Text">
+                UX design representative for ColorOS 14, 15, and 16; coordinated cross-business experience
+                collaboration and delivery. Led user insight work for ColorOS 14 and proposed its aesthetic
+                direction, landed through the shared design system. Led the platform team for system motion,
+                brand, and the shared design system; published the ColorOS 15 &amp; 16 UI Kits on Figma Community.
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title" data-i18n="job3Title">Internet Services Experience Design Lead — OPPO</h4>
+
+              <span>2020.04 — 2022.12</span>
+
+              <p class="timeline-text" data-i18n="job3Text">
+                Led experience design for the internet services BU — app store, browser, game center, and
+                game assistant — balancing user experience with commercial goals; managed 40+ designers.
+                Rebuilt the software user research team and established NPS-based experience measurement.
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title" data-i18n="job4Title">Design Lead, WeSing &amp; Innovation Product Matrix — Tencent</h4>
+
+              <span>2014 — 2020</span>
+
+              <p class="timeline-text" data-i18n="job4Text">
+                Joined WeSing (全民K歌) from 0 to 1, leading audio-video creation, social, and livestream
+                interaction experiences. Built the design platform and component capabilities behind
+                multiple products and platforms.
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title" data-i18n="job5Title">Senior Interaction Designer, Core PC Products — Tencent</h4>
+
+              <span>2007.08 — 2014</span>
+
+              <p class="timeline-text" data-i18n="job5Text">
+                Interaction design for QQ, QQ Pay, and PC Manager; owned QQ system-level design
+                specifications and contributed to Tencent's experience design principles.
+              </p>
+
+            </li>
+</ol>
+
+        </section>
+
+                <section class="timeline">
+
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="book-outline"></ion-icon>
+            </div>
+
+            <h3 class="h3" data-i18n="eduTitle">Education</h3>
+          </div>
+
+          <ol class="timeline-list">
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title" data-i18n="eduName">Xi'an Jiaotong University</h4>
+
+              <span>2003 — 2007</span>
+
+              <p class="timeline-text" data-i18n="eduText">
+                B.Eng, Industrial Design — human-computer interface focus.
+              </p>
+
+            </li>
+
+          </ol>
+
+        </section>
+
+<section class="skill">
+
+          <h3 class="h3 skills-title" data-i18n="focusTitle">Focus areas</h3>
+
+          <ul class="skills-list content-card">
+
+            <li class="skills-item">
+
+              <div class="title-wrapper">
+                <h5 class="h5" data-i18n="focus1Title">Design leadership &amp; team building</h5>
+              </div>
+
+              <p class="timeline-text" data-i18n="focus1Text">Hiring, coaching, critique culture, and design quality at team scale.</p>
+
+            </li>
+
+            <li class="skills-item">
+
+              <div class="title-wrapper">
+                <h5 class="h5" data-i18n="focus2Title">Design systems &amp; motion</h5>
+              </div>
+
+              <p class="timeline-text" data-i18n="focus2Text">Tokens, components, interaction paradigms, and motion language for OS-scale products.</p>
+
+            </li>
+
+            <li class="skills-item">
+
+              <div class="title-wrapper">
+                <h5 class="h5" data-i18n="focus3Title">OS, foldables &amp; ecosystem</h5>
+              </div>
+
+              <p class="timeline-text" data-i18n="focus3Text">System interaction, new form factors, and cross-device continuity.</p>
+
+            </li>
+
+            <li class="skills-item">
+
+              <div class="title-wrapper">
+                <h5 class="h5" data-i18n="focus4Title">On-device AI experiences</h5>
+              </div>
+
+              <p class="timeline-text" data-i18n="focus4Text">Runnable prototypes, personal agents, local models, and AI-assisted design workflows — explored hands-on since 2025.</p>
+
+            </li>
+
+          </ul>
+
+        </section>
+
+      </article>
+
+
+
+
+
+      <!--
+        - #PORTFOLIO
+      -->
+
+      <article class="portfolio" data-page="portfolio">
+
+        <header>
+          <h2 class="h2 article-title" data-i18n="portfolioTitle">Portfolio</h2>
+        </header>
+
+        <section class="projects">
+
+          <ul class="filter-list">
+
+            <li class="filter-item">
+              <button class="active" data-filter-btn data-filter-value="all" data-i18n="filterAll">All</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn data-filter-value="design systems" data-i18n="filterDS">Design Systems</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn data-filter-value="product experience" data-i18n="filterPE">Product Experience</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn data-filter-value="design leadership" data-i18n="filterDL">Design Leadership</button>
+            </li>
+
+          </ul>
+
+          <div class="filter-select-box">
+
+            <button class="filter-select" data-select>
+
+              <div class="select-value" data-selecct-value>Select category</div>
+
+              <div class="select-icon">
+                <ion-icon name="chevron-down"></ion-icon>
+              </div>
+
+            </button>
+
+            <ul class="select-list">
+
+              <li class="select-item">
+                <button data-select-item data-select-value="all" data-i18n="filterAll">All</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item data-select-value="design systems" data-i18n="filterDS">Design Systems</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item data-select-value="product experience" data-i18n="filterPE">Product Experience</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item data-select-value="design leadership" data-i18n="filterDL">Design Leadership</button>
+              </li>
+
+            </ul>
+
+          </div>
+
+          <ul class="project-list">
+            <li class="project-item  active" data-filter-item data-category="design systems">
+              <a href="#">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-1.jpg" alt="ColorOS UI kits" loading="lazy">
+                </figure>
+
+                <h3 class="project-title" data-i18n="proj1Title">ColorOS 15 &amp; 16 UI Kits</h3>
+
+                <p class="project-category" data-i18n="catDS">Design Systems</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="design systems">
+              <a href="#">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-3.jpg" alt="ColorOS aesthetic and motion" loading="lazy">
+                </figure>
+
+                <h3 class="project-title" data-i18n="proj2Title">ColorOS 14 Aesthetic Direction &amp; Motion</h3>
+
+                <p class="project-category" data-i18n="catDS">Design Systems</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="product experience">
+              <a href="#">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-2.png" alt="WeSing" loading="lazy">
+                </figure>
+
+                <h3 class="project-title" data-i18n="proj3Title">WeSing — 0 to 1</h3>
+
+                <p class="project-category" data-i18n="catPE">Product Experience</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="product experience">
+              <a href="#">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-4.png" alt="ColorOS interconnect" loading="lazy">
+                </figure>
+
+                <h3 class="project-title" data-i18n="proj4Title">ColorOS Interconnect Experience</h3>
+
+                <p class="project-category" data-i18n="catPE">Product Experience</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="product experience">
+              <a href="#">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-5.png" alt="AI prototyping" loading="lazy">
+                </figure>
+
+                <h3 class="project-title" data-i18n="proj5Title">AI Prototyping &amp; Runnable Demos</h3>
+
+                <p class="project-category" data-i18n="catPE">Product Experience</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="design leadership">
+              <a href="#">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-6.png" alt="teams and metrics" loading="lazy">
+                </figure>
+
+                <h3 class="project-title" data-i18n="proj6Title">Teams, Research &amp; NPS Metrics</h3>
+
+                <p class="project-category" data-i18n="catDL">Design Leadership</p>
+
+              </a>
+            </li>
+</ul>
+
+        </section>
+
+      </article>
+
+
+
+
+
+      <!--
+        - #CONTACT (removed: sidebar contact info covers it)
+      -->
+
+    </div>
+
+  </main>
+
+
+
+
+
+
+  <!--
+    - custom js link
+  -->
+  <script>localStorage.removeItem("vcard-theme");document.documentElement.removeAttribute("data-theme");</script>
+  <script src="./assets/js/script.js"></script>
+
+  <!--
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

@@ -475,10 +475,9 @@ article[data-page="portfolio"]::after { content: "WORK"; }
     align-self: stretch;
     height: auto;
     padding-top: 30px;
-    /* Template parks the sticky sidebar 60px below the viewport top.
-       In this layout that offset also reads as the whole card sitting
-       60px below the article, so park it flush; sticky still works. */
-    top: 0;
+    /* DIAGNOSTIC: sticky disabled to isolate the 60px drop.
+       If the tops align with sticky off, sticky is the culprit. */
+    position: static;
   }
 
   article[data-page] { padding-top: 30px; }

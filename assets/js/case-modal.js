@@ -88,7 +88,7 @@
   modal.innerHTML =
     '<div class="case-backdrop" data-close></div>' +
     '<div class="case-panel" role="dialog" aria-modal="true" aria-label="Case study">' +
-    '<button type="button" class="case-close" data-close aria-label="Close">\u00d7</button>' +
+    '<button type="button" class="case-close" data-close aria-label="Close"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>' +
     '<img class="case-hero" alt="">' +
     '<div class="case-body">' +
     '<div class="case-tags"><span class="case-tag case-tag-cat"></span><span class="case-tag case-tag-org"></span></div>' +

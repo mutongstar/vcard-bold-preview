@@ -16,9 +16,13 @@
     if (!active) return;
     var listRect = list.getBoundingClientRect();
     var linkRect = active.getBoundingClientRect();
-    var x = linkRect.left - listRect.left + list.scrollLeft;
-    indicator.style.width = linkRect.width + "px";
-    indicator.style.height = linkRect.height + "px";
+    /* Pill sits slightly inside the link box so its glow and spring
+       overshoot never clip at the container edges. */
+    var insetX = 8;
+    var insetY = 4;
+    var x = linkRect.left - listRect.left + list.scrollLeft + insetX;
+    indicator.style.width = (linkRect.width - insetX * 2) + "px";
+    indicator.style.height = (linkRect.height - insetY * 2) + "px";
     indicator.style.transform = "translateX(" + x + "px) translateY(-50%)";
     list.classList.add("has-indicator");
   }

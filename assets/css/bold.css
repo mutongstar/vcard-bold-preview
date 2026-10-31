@@ -146,6 +146,10 @@ article[data-page="portfolio"]::after { content: "WORK"; }
 
 /* ---------- service cards: liquid glass, no left bar ---------- */
 .service-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 24px;
   background: linear-gradient(var(--glass-angle), rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.08) 55%, rgba(255, 255, 255, 0.03));
   -webkit-backdrop-filter: blur(14px) saturate(150%);
   backdrop-filter: blur(14px) saturate(150%);
@@ -160,17 +164,20 @@ article[data-page="portfolio"]::after { content: "WORK"; }
 /* icon backplate: same gradient-frame construction as the contact icon boxes */
 .service-icon-box {
   position: relative;
-  width: 52px;
-  height: 52px;
+  width: 64px;
+  height: 64px;
   flex-shrink: 0;
   align-self: flex-start;
   aspect-ratio: 1 / 1;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 0;
+  margin-bottom: 0;
   border: none;
   border-radius: 12px;
-  background: linear-gradient(var(--glass-angle), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.08));
+  /* rim light kept as faint as possible: same construction, lowest alphas */
+  background: linear-gradient(var(--glass-angle), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02));
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
   color: #f5c451;
   z-index: 1;
@@ -188,8 +195,14 @@ article[data-page="portfolio"]::after { content: "WORK"; }
 .service-icon-box img {
   position: relative;
   z-index: 1;
-  max-width: 34px;
-  max-height: 34px;
+  max-width: 48px;
+  max-height: 48px;
+}
+
+.service-content-box {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
 }
 
 /* ---------- timeline ---------- */
@@ -518,6 +531,10 @@ article[data-page="portfolio"]::after { content: "WORK"; }
 
 .navbar-link {
   display: inline-block;
+  /* fixed English-based width: switching languages never shifts the capsule,
+     Chinese labels sit centered with generous whitespace */
+  min-width: 7.5em;
+  text-align: center;
   padding: 9px 18px;
   border-radius: 9999px;
   white-space: nowrap;
@@ -543,14 +560,18 @@ article[data-page="portfolio"]::after { content: "WORK"; }
   font-size: 12px;
   border-radius: 9999px;
   flex-shrink: 0;
+  min-width: 4.5em;
+  text-align: center;
 }
 
 @media (max-width: 580px) {
   .navbar {
-    left: 12px;
-    right: 12px;
-    width: auto;
+    left: 50%;
+    right: auto;
+    width: max-content;
+    max-width: calc(100vw - 24px);
     bottom: 12px;
+    transform: translateX(-50%);
   }
 }
 

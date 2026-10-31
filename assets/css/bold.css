@@ -304,11 +304,45 @@ article[data-page="portfolio"]::after { content: "WORK"; }
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
 }
 
-.project-title { bottom: 36px; }
+.project-title { bottom: 16px; }
 
 .project-category {
-  bottom: 14px;
-  color: rgba(255, 255, 255, 0.78);
+  top: 12px;
+  left: 12px;
+  right: auto;
+  bottom: auto;
+  padding: 5px 11px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  color: #f5c451;
+  background: rgba(20, 20, 26, 0.55);
+  border: 1px solid rgba(245, 196, 81, 0.45);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  text-shadow: none;
+}
+
+.project-org {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  display: inline-block;
+  padding: 5px 11px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  color: #ffffff;
+  background: rgba(20, 20, 26, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  text-shadow: none;
 }
 
 .project-title::after {
@@ -383,13 +417,28 @@ article[data-page="portfolio"]::after { content: "WORK"; }
 
 .case-body { padding: 28px 32px 36px; }
 
-.case-kicker {
-  margin: 0 0 8px;
+.case-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 0 0 14px;
+}
+
+.case-tag {
+  padding: 5px 11px;
+  border-radius: 9999px;
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  color: #f5f2ea;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.case-tag-cat {
   color: #f5c451;
+  border-color: rgba(245, 196, 81, 0.45);
 }
 
 .case-title {
@@ -590,3 +639,32 @@ article[data-page="portfolio"]::after { content: "WORK"; }
 @media (max-width: 580px) {
   article[data-page]::after { display: none; }
 }
+
+/* ---------- portfolio: filter tabs removed; categories live on the covers ---------- */
+.filter-list,
+.filter-select-box { display: none; }
+
+/* ---------- navbar sliding indicator ---------- */
+.navbar-list { position: relative; }
+
+.navbar-indicator {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 0;
+  height: 36px;
+  background: #f5c451;
+  border-radius: 9999px;
+  box-shadow: 0 4px 10px rgba(245, 196, 81, 0.35), inset 0 0 0 1px rgba(245, 196, 81, 0.4);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: transform 0.45s cubic-bezier(0.34, 1.35, 0.64, 1), width 0.45s cubic-bezier(0.34, 1.35, 0.64, 1), opacity 0.25s ease;
+  will-change: transform, width;
+}
+
+.navbar-list.has-indicator .navbar-indicator { opacity: 1; }
+
+.navbar-list.has-indicator .navbar-link { position: relative; z-index: 1; }
+
+.navbar-list.has-indicator .navbar-link.active { background: transparent; box-shadow: none; }

@@ -91,7 +91,7 @@
     '<button type="button" class="case-close" data-close aria-label="Close">\u00d7</button>' +
     '<img class="case-hero" alt="">' +
     '<div class="case-body">' +
-    '<p class="case-kicker"></p>' +
+    '<div class="case-tags"><span class="case-tag case-tag-cat"></span><span class="case-tag case-tag-org"></span></div>' +
     '<h3 class="case-title"></h3>' +
     '<dl class="case-meta"></dl>' +
     '<p class="case-overview"></p>' +
@@ -104,7 +104,8 @@
   document.body.appendChild(modal);
 
   var hero = modal.querySelector(".case-hero");
-  var kicker = modal.querySelector(".case-kicker");
+  var tagCat = modal.querySelector(".case-tag-cat");
+  var tagOrg = modal.querySelector(".case-tag-org");
   var title = modal.querySelector(".case-title");
   var meta = modal.querySelector(".case-meta");
   var overview = modal.querySelector(".case-overview");
@@ -143,8 +144,10 @@
     var img = anchor.querySelector(".project-img img");
     var t = anchor.querySelector(".project-title");
     var cat = anchor.querySelector(".project-category");
+    var org = anchor.querySelector(".project-org");
     if (img) { hero.src = img.getAttribute("src"); hero.alt = img.getAttribute("alt") || ""; }
-    kicker.textContent = cat ? cat.textContent.trim() : "";
+    tagCat.textContent = cat ? cat.textContent.trim() : "";
+    tagOrg.textContent = org ? org.textContent.trim() : "";
     title.textContent = t ? t.textContent.trim() : "";
     fillMeta(c);
     overview.textContent = c.overview;

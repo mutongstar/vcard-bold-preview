@@ -233,7 +233,10 @@ const I18N = {
     proj6Title: "Teams, Research & NPS Metrics",
     catDS: "Design Systems",
     catPE: "Product Experience",
-    catDL: "Design Leadership"
+    catDL: "Design Leadership",
+  orgOPPO: "OPPO",
+  orgTencent: "Tencent",
+  orgPersonal: "Personal",
   },
   zh: {
     metaTitle: "牟伟成 — 设计负责人",
@@ -298,7 +301,10 @@ const I18N = {
     proj6Title: "团队、研究与 NPS 度量",
     catDS: "设计系统",
     catPE: "产品体验",
-    catDL: "设计领导力"
+    catDL: "设计领导力",
+  orgOPPO: "OPPO",
+  orgTencent: "腾讯",
+  orgPersonal: "个人",
   }
 };
 

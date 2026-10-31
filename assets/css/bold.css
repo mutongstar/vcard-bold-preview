@@ -5,6 +5,8 @@
    this direction must not inherit a saved light theme.
    ============================================================ */
 
+:root { --glass-angle: 135deg; }
+
 /* ---------- atmosphere: ink canvas with glow + grid + grain ---------- */
 body {
   background: #0a0a0d;
@@ -94,11 +96,11 @@ article[data-page] {
 
 /* ---------- panels ---------- */
 .sidebar {
-  background: #16161c;
-  border: 1px solid #26262e;
-  border-top: 3px solid transparent;
-  border-image: linear-gradient(90deg, #f5c451, transparent 70%) 1;
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+  background: linear-gradient(var(--glass-angle), rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.04) 42%, rgba(255, 255, 255, 0.02));
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), inset 0 -1px 0 rgba(255, 255, 255, 0.06), 0 24px 48px rgba(0, 0, 0, 0.45);
 }
 
 article[data-page] {
@@ -142,17 +144,49 @@ article[data-page="about"]::after { content: "ABOUT"; }
 article[data-page="resume"]::after { content: "RÉSUMÉ"; }
 article[data-page="portfolio"]::after { content: "WORK"; }
 
-/* ---------- service chips ---------- */
+/* ---------- service cards: liquid glass, no left bar ---------- */
 .service-item {
-  background: #1b1b23;
-  border: 1px solid #26262e;
-  border-left: 3px solid #f5c451;
+  background: linear-gradient(var(--glass-angle), rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.08) 55%, rgba(255, 255, 255, 0.03));
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  backdrop-filter: blur(14px) saturate(150%);
+  border: none;
   border-radius: 14px;
 }
 
+.service-item::before {
+  background: linear-gradient(var(--glass-angle), rgba(30, 30, 38, 0.72), rgba(18, 18, 24, 0.72));
+}
+
+/* icon backplate: same gradient-frame construction as the contact icon boxes */
 .service-icon-box {
-  border: 1px solid rgba(245, 196, 81, 0.45);
+  position: relative;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(var(--glass-angle), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.08));
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
   color: #f5c451;
+  z-index: 1;
+}
+
+.service-icon-box::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: #1b1b23;
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.service-icon-box img {
+  position: relative;
+  z-index: 1;
+  max-width: 30px;
+  max-height: 30px;
 }
 
 /* ---------- timeline ---------- */
@@ -160,7 +194,7 @@ article[data-page="portfolio"]::after { content: "WORK"; }
   width: 9px;
   height: 9px;
   background: #f5c451;
-  box-shadow: 0 0 0 4px #16161c, 0 0 0 5px rgba(245, 196, 81, 0.4);
+  box-shadow: 0 0 0 4px #16161c;
 }
 
 .timeline-item > span {
@@ -245,6 +279,35 @@ article[data-page="portfolio"]::after { content: "WORK"; }
 
 .separator {
   background: #33333d;
+}
+
+/* ---------- sidebar aligns with the article column ---------- */
+@media (min-width: 1250px) {
+  .sidebar {
+    align-self: stretch;
+    height: auto;
+  }
+}
+
+/* ---------- navbar: liquid glass, language switch inside ---------- */
+.navbar {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(var(--glass-angle), rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.04) 42%, rgba(255, 255, 255, 0.02));
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), inset 0 -1px 0 rgba(255, 255, 255, 0.06), 0 18px 36px rgba(0, 0, 0, 0.45);
+}
+
+.navbar-list { flex: 1; }
+
+.navbar .lang-btn {
+  margin-left: auto;
+  margin-right: 10px;
+  padding: 6px 14px;
+  font-size: 12px;
+  flex-shrink: 0;
 }
 
 /* ---------- scrollbar + small screens ---------- */
